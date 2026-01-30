@@ -2,6 +2,7 @@
 
 import logging
 from contextlib import asynccontextmanager
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -36,10 +37,15 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Get origins from an environment variable, fallback to localhost for dev
+# You can provide a comma-separated string like "https://your-site.vercel.app,http://localhost:3000"
+raw_origins = os.getenv("CORS_ALLOWED_ORIGINS","https://hackathoniiq4phaseiifrontend-sigma.vercel.app,http://localhost:3000")
+origins = [origin.strip() for origin in raw_origins.split(",")]
+
 # Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # TODO: Configure for production
+    allow_origins=origins,  # TODO: Configure for production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
