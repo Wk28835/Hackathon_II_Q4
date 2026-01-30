@@ -4,11 +4,5 @@
     "title": "Task to complete",
     "description": "Test description",
     "status": "Incomplete"
-  },
-  {
-    "id": "45f2a579-8805-47ee-bfb9-aa621dcb4f85",
-    "title": "milk",
-    "description": "Test description",
-    "status": "Incomplete"
   }
 ]
