@@ -39,13 +39,18 @@ app = FastAPI(
 
 # Get origins from an environment variable, fallback to localhost for dev
 # You can provide a comma-separated string like "https://your-site.vercel.app,http://localhost:3000"
-raw_origins = os.getenv("CORS_ALLOWED_ORIGINS","https://hackathoniiq4phaseiifrontend-sigma.vercel.app,http://localhost:3000")
+raw_origins = os.getenv("CORS_ALLOWED_ORIGINS","https://hackathoniiq4phaseiifrontend-sigma.vercel.app")
 origins = [origin.strip() for origin in raw_origins.split(",")]
 
 # Configure CORS middleware
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # TODO: Configure for production
+    allow_origins=[
+        "http://localhost:3000",    # Docusaurus dev
+        "https://hackathoniiq4phaseiifrontend-sigma.vercel.app",
+        "hackathoniiq4phaseiifrontend-m44ci5b8z.vercel.app",  # (add later)
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
