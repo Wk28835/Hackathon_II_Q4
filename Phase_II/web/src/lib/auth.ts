@@ -20,7 +20,7 @@ const globalForAuth = globalThis as unknown as { auth: any };
 export const auth = globalForAuth.auth || betterAuth({
   database: pool,
   secret: process.env.BETTER_AUTH_SECRET,
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL: process.env.BETTER_AUTH_URL,
   plugins: [nextCookies()], // Keep this as the ONLY plugin for now
   emailAndPassword: { enabled: true },
 });
