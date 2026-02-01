@@ -1,0 +1,7 @@
+Alembic migrations scaffold (tasks.md T057).
+
+To initialize and create migrations:
+- Set DATABASE_URL in .env
+- Install requirements
+- Run: alembic revision --autogenerate -m "message"
+- Run: alembic upgrade head

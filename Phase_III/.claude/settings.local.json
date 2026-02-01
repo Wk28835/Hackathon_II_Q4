@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python -m uvicorn:*)",
+      "Bash(npm run dev:*)",
+      "Bash(alembic revision:*)",
+      "Bash(python -m alembic revision:*)",
+      "Bash(uvicorn:*)",
+      "Bash(python -m alembic:*)",
+      "Bash(python:*)",
+      "Bash(curl:*)",
+      "Bash(./venv/Scripts/python:*)",
+      "Bash(./backend/venv/Scripts/python:*)",
+      "Bash(./backend/venv/Scripts/pip install:*)",
+      "Bash(\"backend/venv/Scripts/python\" test_chat_integration.py)"
+    ]
+  }
+}
