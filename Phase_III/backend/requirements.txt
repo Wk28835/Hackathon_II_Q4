@@ -11,11 +11,15 @@ psycopg2-binary==2.9.9
 asyncpg==0.29.0
 aiosqlite==0.20.0
 
+# AI Integration
+google-generativeai==0.3.1
+
 # Migrations
 alembic==1.13.1
 
 # Authentication
 python-jose==3.3.0
+passlib[bcrypt]==1.7.4
 
 # Testing
 pytest==7.4.3
