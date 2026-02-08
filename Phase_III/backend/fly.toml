@@ -1,0 +1,27 @@
+# fly.toml file for FastAPI backend
+
+app = "hackathon-ii-q4-backend"   # unique app name on Fly.io
+primary_region = "fra"            # choose your nearest region (e.g., fra = Frankfurt, sin = Singapore)
+
+[build]
+  # Use Dockerfile in this folder
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8000"
+
+[[services]]
+  internal_port = 8000
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
