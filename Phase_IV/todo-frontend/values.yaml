@@ -1,0 +1,81 @@
+replicaCount: 1
+
+image:
+  repository: phase_iv-frontend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+env:
+  NEXT_PUBLIC_API_URL: "http://todo.test/api"
+  NEXT_PUBLIC_BETTER_AUTH_URL: "http://todo.test"
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1001
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: todo.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+
+#livenessProbe:
+  #httpGet:
+    #path: /
+   # port: 3000
+  #initialDelaySeconds: 20
+  #periodSeconds: 10
+
+#readinessProbe:
+ # httpGet:
+#    path: /
+#    port: 3000
+ # initialDelaySeconds: 20
+ # periodSeconds: 10
+
+httpRoute:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+volumes: []
+volumeMounts: []
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

@@ -1,0 +1,46 @@
+replicaCount: 1
+
+image:
+  repository: phase_iv-backend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+# Added missing block for serviceaccount.yaml
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+# Added missing block for deployment.yaml logic
+autoscaling:
+  enabled: false
+
+# Added missing block for securityContext
+podSecurityContext: {}
+securityContext: {}
+
+httpRoute:
+  enabled: false
+
+env:
+  DATABASE_URL: "postgresql"
+  GEMINI_API_KEY: "apikey"
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: api.todo.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources: {}
+livenessProbe: {}
+readinessProbe: {}
