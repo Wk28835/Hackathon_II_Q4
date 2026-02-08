@@ -25,7 +25,7 @@ const pool = new Pool({
 
 export const auth = betterAuth({
   secret: secret,
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL: process.env.BETTER_AUTH_URL,
   plugins: [nextCookies()],
   
   // Enable email and password authentication

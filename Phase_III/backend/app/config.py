@@ -2,20 +2,20 @@
 
 import logging
 from typing import Optional
-
-from pydantic_settings import BaseSettings
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     # Database
-    database_url: str = "postgresql://neondb_owner:npg_tJ8NEvh9dHGV@ep-still-fog-a4ctbf4n-pooler.us-east-1.aws.neon.tech/hackthonQ4_db?sslmode=require&channel_binding=require"
+    database_url: str = Field(..., validation_alias="DATABASE_URL")
 
     # Authentication
-    better_auth_secret: str = "PrkNWTriWNtT6lO+L/R2WufIiY9cshUs6HjiiGSW1xU="
-    claude_api_key: str = "dummy-key-for-dev"
-    gemini_api_key: Optional[str] = None
+    better_auth_secret: str = Field(..., validation_alias="BETTER_AUTH_SECRET")
+    gemini_api_key: str = Field(..., validation_alias="GEMINI_API_KEY")
+    claude_api_key: Optional[str] = Field(None, validation_alias="CLAUDE_API_KEY")
 
     # API
     api_host: str = "127.0.0.1"
@@ -27,12 +27,12 @@ class Settings(BaseSettings):
     app_name: str = "Task CRUD API"
     app_version: str = "1.0.0"
 
-    class Config:
-        """Pydantic config for loading from .env file."""
-
-        env_file = ".env"
-        case_sensitive = False
-        extra = "ignore"
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="ignore"
+    )
 
     @property
     def LOG_LEVEL(self) -> int:

@@ -44,7 +44,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",    # Docusaurus dev
         "https://hackathoniiq4phaseiifrontend-sigma.vercel.app",
-        "hackathoniiq4phaseiifrontend-m44ci5b8z.vercel.app",  # (add later)
+        "https://hackathoniiq4phaseiifrontend-m44ci5b8z.vercel.app",  # (add later)
     ],
     allow_credentials=True,
     allow_methods=["*"],

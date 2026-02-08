@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth"; // server-side auth
 import { headers } from "next/headers"; // Next.js server headers
 import { generateBackendToken } from "@/lib/jwt";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Server-side API Client (for use in Server Components)
 export async function getTasks(status?: TaskStatus): Promise<Task[]> {
